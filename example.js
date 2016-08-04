@@ -1,20 +1,25 @@
 var InputText = React.createClass({
+  getInitialState: function () {
+    return {focus: false}
+  },
   handleChange: function (e) {
-    this.props.onChangeRe(e.target.value)
+    this.props.onChange(e.target.value)
   },
   handleFocus: function (e) {
-    this.props.onFocusRe(this.props.index)
+    this.setState({ focus: true });
+  },
+  handleBlur: function (e) {
+    this.setState({ focus: false });
   },
   render: function () {
-    if (this.props.index != this.props.select) {
-      var t = this;
+    if (!this.state.focus) {
       setTimeout(function () {
-        var DOMNode = ReactDOM.findDOMNode(t.refs.theInput);
-        DOMNode.value = t.props.text;
-      }, 0)
+        var DOMNode = ReactDOM.findDOMNode(this.refs.theInput);
+        DOMNode.value = this.props.text;
+      }.bind(this), 0)
     }
     return (
-      <input type='text' ref="theInput" onFocus = {this.handleFocus} onChange={this.handleChange} />
+      <input type='text' ref="theInput" onFocus = {this.handleFocus} onBlur = {this.handleBlur} onChange={this.handleChange} />
     )
   }
 });
@@ -22,18 +27,15 @@ var InputText = React.createClass({
 
 var Text = React.createClass({
   getInitialState: function () {
-    return { index: -1, text: '資料~~' }
+    return {text: '資料~~'}
   },
-  onChangeRe: function (value) {
+  onChange: function (value) {
     this.setState({ text: value });
-  },
-  onFocusRe: function (index) {
-    this.setState({ index: index });
   },
   render: function () {
     var Nodes = new Array();
-    for (var i = 0; i < 3; i++) {
-      Nodes[i] = <InputText key = {i} type='text' text={this.state.text}  onFocusRe = {this.onFocusRe} onChangeRe = {this.onChangeRe} index = {i} select = {this.state.index} />
+    for (var i = 0; i < this.props.count; i++) {
+      Nodes[i] = <InputText key = {i} type='text' text={this.state.text} onChange = {this.onChange} />
     }
     return (
       <div>
@@ -44,7 +46,7 @@ var Text = React.createClass({
 });
 
 ReactDOM.render(
-  <Text />,
+  <Text count = {4}/>,
   document.getElementById('example01')
 );
 
