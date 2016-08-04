@@ -1,15 +1,15 @@
 var InputText = React.createClass({
-  getInitialState: function () {
-    return {focus: false}
+  componentWillMount: function () {
+    this.focus = false;
   },
   handleChange: function (e) {
     this.props.onChange(e.target.value)
   },
   handleFocus: function (e) {
-    this.setState({ focus: true });
+    this.focus = true;
   },
   handleBlur: function (e) {
-    this.setState({ focus: false });
+    this.focus = false;
   },
   setText:function(value){
     var DOMNode = ReactDOM.findDOMNode(this.refs.theInput);
@@ -19,7 +19,7 @@ var InputText = React.createClass({
       this.setText(this.props.text);
   },
   componentDidUpdate:function(prevProps, prevState, rootNode){
-    if (!this.state.focus) {
+    if (!this.focus) {
         this.setText(this.props.text);
     }
   },
