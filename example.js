@@ -11,13 +11,19 @@ var InputText = React.createClass({
   handleBlur: function (e) {
     this.setState({ focus: false });
   },
-  render: function () {
+  setText:function(value){
+    var DOMNode = ReactDOM.findDOMNode(this.refs.theInput);
+    DOMNode.value = value;
+  },
+  componentDidMount: function (rootNode){
+      this.setText(this.props.text);
+  },
+  componentDidUpdate:function(prevProps, prevState, rootNode){
     if (!this.state.focus) {
-      setTimeout(function () {
-        var DOMNode = ReactDOM.findDOMNode(this.refs.theInput);
-        DOMNode.value = this.props.text;
-      }.bind(this), 0)
+        this.setText(this.props.text);
     }
+  },
+  render: function () {    
     return (
       <input type='text' ref="theInput" onFocus = {this.handleFocus} onBlur = {this.handleBlur} onChange={this.handleChange} />
     )
@@ -31,7 +37,7 @@ var Text = React.createClass({
   },
   onChange: function (value) {
     this.setState({ text: value });
-  },
+  },    
   render: function () {
     var Nodes = new Array();
     for (var i = 0; i < this.props.count; i++) {
