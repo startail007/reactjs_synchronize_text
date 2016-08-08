@@ -1,4 +1,4 @@
-synchronize_text 文字同步功能
+文字同步功能(synchronize_text)
 =========================
 ### 演示
 [線上觀看](http://virtools.github.io/reactjs_synchronize_text/v1/index.html)
