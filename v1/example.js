@@ -2,7 +2,7 @@ var InputText = React.createClass({
   componentWillMount: function () {
     this.focus = false;
     this.shared = []; 
-      this.text = "";
+    this.text = "";
   },
   handleChange: function (e) {
     this.text = e.target.value;   
@@ -50,15 +50,15 @@ var InputText = React.createClass({
 });
 
 var Text01 = ReactDOM.render(
-  <InputText type='text' text={"欄位01"} />,
+  <InputText text={"欄位01"} />,
   document.getElementById('example01')
 );
 var Text02 = ReactDOM.render(
-  <InputText type='text' text={"欄位02"}  />,
+  <InputText text={"欄位02"}  />,
   document.getElementById('example02')
 );
 var Text03 = ReactDOM.render(
-  <InputText type='text' text={"欄位03"} />,
+  <InputText text={"欄位03"} />,
   document.getElementById('example03')
 );
 Text01.setShared([Text02,Text03]);
