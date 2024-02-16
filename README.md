@@ -1,7 +1,7 @@
 文字同步功能(synchronize_text)
 =========================
 ### 演示
-[線上觀看](http://virtools.github.io/reactjs_synchronize_text/v1/index.html)
+[線上觀看](http://startail007.github.io/reactjs_synchronize_text/v1/index.html)
 ### 設置
 |設置|默認值|描述|
 |---|---|---|
